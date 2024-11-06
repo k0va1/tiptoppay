@@ -1,7 +1,8 @@
 # frozen_string_literal: true
-require 'yaml'
 
-module CloudPayments
+require "yaml"
+
+module TiptopPay
   module RSpec
     module Helpers
       class StubApiRequest
@@ -12,19 +13,21 @@ module CloudPayments
         end
 
         def perform
-          webmock_stub.to_return(
-            status: response[:status] || 200,
-            body: response[:body] || '',
-            headers: response_headers
-          ) if webmock_stub
+          if webmock_stub
+            webmock_stub.to_return(
+              status: response[:status] || 200,
+              body: response[:body] || "",
+              headers: response_headers
+            )
+          end
         end
 
         def to_return(options)
           webmock_stub.to_return(return_options.merge(options)) if webmock_stub
         end
 
-        def to_raise(*args)
-          webmock_stub.to_raise(*args) if webmock_stub
+        def to_raise(*)
+          webmock_stub.to_raise(*) if webmock_stub
         end
 
         def to_timeout
@@ -36,17 +39,15 @@ module CloudPayments
         def return_options
           {
             status: response[:status] || 200,
-            body: response[:body] || '',
+            body: response[:body] || "",
             headers: response_headers
           }
         end
 
         def webmock_stub
-          @webmock_stub ||= begin
-            if fixture
-              WebMock::StubRegistry.instance.register_request_stub(WebMock::RequestStub.new(:post, url)).
-                with(body: request[:body] || '', headers: request_headers, basic_auth: ['user', 'pass'])
-            end
+          @webmock_stub ||= if fixture
+            WebMock::StubRegistry.instance.register_request_stub(WebMock::RequestStub.new(:post, url))
+              .with(body: request[:body] || "", headers: request_headers, basic_auth: ["user", "pass"])
           end
         end
 
@@ -55,11 +56,11 @@ module CloudPayments
         end
 
         def request_headers
-          { 'Content-Type' => 'application/json' }.merge(request[:headers] || {})
+          {"Content-Type" => "application/json"}.merge(request[:headers] || {})
         end
 
         def response_headers
-          { 'Content-Type' => 'application/json' }.merge(response[:headers] || {})
+          {"Content-Type" => "application/json"}.merge(response[:headers] || {})
         end
 
         def request
@@ -73,12 +74,12 @@ module CloudPayments
         def fixture
           @fixture ||= begin
             file = fixture_path.join("#{name}.yml").to_s
-            YAML.load(File.read(file)) if File.exists?(file)
+            YAML.load_file(file) if File.exist?(file)
           end
         end
 
         def fixture_path
-          Pathname.new(File.expand_path('../../fixtures/apis', __FILE__))
+          Pathname.new(File.expand_path("../../fixtures/apis", __FILE__))
         end
       end
 

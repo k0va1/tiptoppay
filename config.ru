@@ -1,10 +1,11 @@
 # frozen_string_literal: true
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'cloud_payments'
-require 'rack'
-require 'pp'
 
-app = ->(env){
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+require "tiptop_pay"
+require "rack"
+require "pp"
+
+app = ->(env) {
   pp env
   pp Rack::Request.new(env).params
 
@@ -20,11 +21,11 @@ app = ->(env){
         "Email": null,
         "Description": "Payment for goods on example.com",
         "JsonData": null,
-        "CreatedDate": "\/Date(1401718880000)\/",
+        "CreatedDate": "/Date(1401718880000)/",
         "CreatedDateIso":"2014-08-09T11:49:41",
-        "AuthDate": "\/Date(1401733880523)\/",
+        "AuthDate": "/Date(1401733880523)/",
         "AuthDateIso":"2014-08-09T11:49:42",
-        "ConfirmDate": "\/Date(1401733880523)\/",
+        "ConfirmDate": "/Date(1401733880523)/",
         "ConfirmDateIso":"2014-08-09T11:49:42",
         "AuthCode": "123456",
         "TestMode": true,
@@ -53,7 +54,7 @@ app = ->(env){
     }
   JSON
 
-  [200, { 'Content-Type' => 'application/json' }, [json]]
+  [200, {"Content-Type" => "application/json"}, [json]]
 }
 
 run app

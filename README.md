@@ -1,15 +1,13 @@
-# CloudPayments
+# TiptopPay
 
-CloudPayments ruby client (https://developers.cloudpayments.ru/en/)
-
-[![Build Status](https://travis-ci.org/platmart/cloud_payments.svg)](https://travis-ci.org/platmart/cloud_payments)
+TiptopPay ruby client (https://developers.tiptoppay.kz/#printsip-raboty)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'cloud_payments'
+gem 'tiptop_pay'
 ```
 
 And then execute:
@@ -21,7 +19,7 @@ $ bundle
 Or install it yourself as:
 
 ```
-$ gem install cloud_payments
+$ gem install tiptop_pay
 ```
 
 ## Usage
@@ -31,8 +29,8 @@ $ gem install cloud_payments
 #### Global configuration
 
 ```ruby
-CloudPayments.configure do |c|
-  c.host = 'http://localhost:3000'    # By default, it is https://api.cloudpayments.ru
+TiptopPay.configure do |c|
+  c.host = 'http://localhost:3000'    # By default, it is https://api.tiptoppay.kz
   c.public_key = ''
   c.secret_key = ''
   c.log = false                       # By default. it is true
@@ -41,39 +39,39 @@ CloudPayments.configure do |c|
 end
 
 # API client
-CloudPayments.client.payments.cards.charge(...)
+TiptopPay.client.payments.cards.charge(...)
 
 # Webhooks
-CloudPayments.webhooks.on_pay(...)
+TiptopPay.webhooks.on_pay(...)
 ```
 
 #### Local configuration
 
 ```ruby
-config = CloudPayments::Config.new do |c|
+config = TiptopPay::Config.new do |c|
   # ...
 end
 
 # API client
-client = CloudPayments::Client.new(config)
+client = TiptopPay::Client.new(config)
 client.payments.cards.charge(...)
 
 # Webhooks
-webhooks = CloudPayments::Webhooks.new(config)
+webhooks = TiptopPay::Webhooks.new(config)
 webhooks.on_pay(...)
 ```
 
 ### Test method
 
 ```ruby
-CloudPayments.client.ping
+TiptopPay.client.ping
 # => true
 ```
 
 ### Cryptogram-based payments
 
 ```ruby
-transaction = CloudPayments.client.payments.cards.charge(
+transaction = TiptopPay.client.payments.cards.charge(
   amount: 120,
   currency: 'RUB',
   ip_address: request.remote_ip,
@@ -115,17 +113,17 @@ transaction = CloudPayments.client.payments.cards.charge(
 # :name=>"CARDHOLDER NAME",
 # :token=>"a4e67841-abb0-42de-a364-d1d8f9f4b3c0"}
 transaction.class
-# => CloudPayments::Transaction
+# => TiptopPay::Transaction
 transaction.token
 # => "a4e67841-abb0-42de-a364-d1d8f9f4b3c0"
 ```
 
 ## Kassa Receipt
 
-CloudPayments Kassa API (https://cloudpayments.ru/docs/api/kassa)
+TiptopPay Kassa API (https://kassir.tiptoppay.kz/#api-kassy)
 
 ```ruby
-CloudPayments.client.kassa.receipt({
+TiptopPay.client.kassa.receipt({
   account_id: "user@example.com",
   customer_receipt: {
     items: [
@@ -146,9 +144,9 @@ CloudPayments.client.kassa.receipt({
 ```
 
 ## Apple Pay Start Session
-[Start Apple Pay session](https://developers.cloudpayments.ru/#zapusk-sessii-dlya-oplaty-cherez-apple-pay)
+[Start Apple Pay session](https://developers.tiptoppay.kz/#zapusk-sessii-dlya-oplaty-cherez-apple-pay)
 ```ruby
-CloudPayments.client.apple_pay.start_session({validation_url: "https://apple-pay-gateway-pr-pod2.apple.com/paymentservices/startSession"})
+TiptopPay.client.apple_pay.start_session({validation_url: "https://apple-pay-gateway.apple.com/paymentservices/startSession"})
 # => {
 #   :message => nil,
 #     :model => {
@@ -169,41 +167,41 @@ CloudPayments.client.apple_pay.start_session({validation_url: "https://apple-pay
 ## Webhooks
 
 ```ruby
-if CloudPayments.webhooks.data_valid?(payload, hmac_token)
-  event = CloudPayments.webhooks.on_recurrent(payload)
+if TiptopPay.webhooks.data_valid?(payload, hmac_token)
+  event = TiptopPay.webhooks.on_recurrent(payload)
   # or
-  event = CloudPayments.webhooks.on_pay(payload)
+  event = TiptopPay.webhooks.on_pay(payload)
   # or
-  event = CloudPayments.webhooks.on_fail(payload)
+  event = TiptopPay.webhooks.on_fail(payload)
 end
 ```
 
 with capturing of an exception
 
 ```ruby
-rescue_from CloudPayments::Webhooks::HMACError, :handle_hmac_error
+rescue_from TiptopPay::Webhooks::HMACError, :handle_hmac_error
 
-before_action -> { CloudPayments.webhooks.validate_data!(payload, hmac_token) }
+before_action -> { TiptopPay.webhooks.validate_data!(payload, hmac_token) }
 
 def pay
-  event = CloudPayments.webhooks.on_pay(payload)
+  event = TiptopPay.webhooks.on_pay(payload)
   # ...
 end
 
 def fail
-  event = CloudPayments.webhooks.on_fail(payload)
+  event = TiptopPay.webhooks.on_fail(payload)
   # ...
 end
 
 def recurrent
-  event = CloudPayments.webhooks.on_recurrent(payload)
+  event = TiptopPay.webhooks.on_recurrent(payload)
   # ...
 end
 ```
 
 ## Contributing
 
-1. Fork it ( https://github.com/platmart/cloud_payments/fork )
+1. Fork it ( https://github.com/platmart/tiptop_pay/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
