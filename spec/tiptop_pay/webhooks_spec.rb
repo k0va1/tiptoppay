@@ -165,6 +165,7 @@ describe TiptopPay::Webhooks do
        "StatusCode" => "5",
        "Reason" => "InsufficientFunds",
        "ReasonCode" => "5051",
+       "OperationType" => "Payment",
        "Data" =>
          "{\"cloudPayments\":{\"recurrent\":{\"interval\":\"Month\",\"period\":1}}}"}
     end
@@ -190,6 +191,7 @@ describe TiptopPay::Webhooks do
     specify { expect(subject.card_type).to eq "Visa" }
     specify { expect(subject.card_exp_date).to eq "01/19" }
     specify { expect(subject.description).to eq "Оплата в example.com" }
+    specify { expect(subject.operation_type).to eq "Payment" }
   end
 
   describe "on_recurrent" do
