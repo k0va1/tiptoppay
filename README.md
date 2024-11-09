@@ -118,9 +118,11 @@ transaction.token
 # => "a4e67841-abb0-42de-a364-d1d8f9f4b3c0"
 ```
 
-## Kassa Receipt
+## Kassa
 
 TiptopPay Kassa API (https://kassir.tiptoppay.kz/#api-kassy)
+
+### Create receipt
 
 ```ruby
 TiptopPay.client.kassa.receipt({
@@ -142,6 +144,19 @@ TiptopPay.client.kassa.receipt({
   type: "Income"
 })
 ```
+
+### Get receipt status
+
+```ruby
+TiptopPay.client.kassa.receipt_status(id: "231312312")
+```
+
+### Get receipt data
+
+```ruby
+TiptopPay.client.kassa.fetch_receipt(id: "231312312")
+```
+
 
 ## Apple Pay Start Session
 [Start Apple Pay session](https://developers.tiptoppay.kz/#zapusk-sessii-dlya-oplaty-cherez-apple-pay)

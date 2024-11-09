@@ -40,4 +40,26 @@ describe TiptopPay::Namespaces::Kassa do
       specify { expect { subject.receipt(attributes) }.to raise_error(described_class::CustomerReceiptNotProvided) }
     end
   end
+
+  describe "#receipt_status" do
+    let(:attributes) do
+      {id: "7708806666"}
+    end
+
+    context do
+      before { attributes.delete(:id) }
+      specify { expect { subject.receipt_status(attributes) }.to raise_error(described_class::IdNotProvided) }
+    end
+  end
+
+  describe "#fetch_receipt" do
+    let(:attributes) do
+      {id: "7708806666"}
+    end
+
+    context do
+      before { attributes.delete(:id) }
+      specify { expect { subject.fetch_receipt(attributes) }.to raise_error(described_class::IdNotProvided) }
+    end
+  end
 end

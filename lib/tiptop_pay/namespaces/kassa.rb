@@ -3,6 +3,7 @@
 module TiptopPay
   module Namespaces
     class Kassa < Base
+      IdNotProvided = Class.new(StandardError)
       InnNotProvided = Class.new(StandardError)
       TypeNotProvided = Class.new(StandardError)
       CustomerReceiptNotProvided = Class.new(StandardError)
@@ -17,6 +18,18 @@ module TiptopPay
         attributes.fetch(:customer_receipt) { raise CustomerReceiptNotProvided.new("customer_receipt is required") }
 
         request(:receipt, attributes)
+      end
+
+      def receipt_status(attributes)
+        attributes.fetch(:id) { raise IdNotProvided.new("id attribute is required") }
+
+        request("receipt/status/get", attributes)
+      end
+
+      def fetch_receipt(attributes)
+        attributes.fetch(:id) { raise IdNotProvided.new("id attribute is required") }
+
+        request("receipt/get", attributes)
       end
     end
   end
