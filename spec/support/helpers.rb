@@ -13,25 +13,23 @@ module TiptopPay
         end
 
         def perform
-          if webmock_stub
-            webmock_stub.to_return(
-              status: response[:status] || 200,
-              body: response[:body] || "",
-              headers: response_headers
-            )
-          end
+          webmock_stub&.to_return(
+            status: response[:status] || 200,
+            body: response[:body] || "",
+            headers: response_headers
+          )
         end
 
         def to_return(options)
-          webmock_stub.to_return(return_options.merge(options)) if webmock_stub
+          webmock_stub&.to_return(return_options.merge(options))
         end
 
         def to_raise(*)
-          webmock_stub.to_raise(*) if webmock_stub
+          webmock_stub&.to_raise(*)
         end
 
         def to_timeout
-          webmock_stub.to_timeout if webmock_stub
+          webmock_stub&.to_timeout
         end
 
         private

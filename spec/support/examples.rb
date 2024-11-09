@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples :not_raise_without_attribute do |key, method = nil|
-  key unless method
-
   context "without `#{key}` attribute" do
     subject do
       attrs = attributes.dup

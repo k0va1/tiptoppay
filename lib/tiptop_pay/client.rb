@@ -39,7 +39,7 @@ module TiptopPay
     end
 
     def raise_transport_error(response)
-      logger.fatal "[#{response.status}] #{response.origin_body}" if logger
+      logger&.fatal "[#{response.status}] #{response.origin_body}"
       error = ERRORS[response.status] || ServerError
       raise error.new "[#{response.status}] #{response.origin_body}"
     end
@@ -47,7 +47,7 @@ module TiptopPay
     def build_connection
       Faraday::Connection.new(config.host, config.connection_options) do |conn|
         conn.request :authorization, :basic, config.public_key, config.secret_key
-        config.connection_block.call(conn) if config.connection_block
+        config&.connection_block&.call(conn)
       end
     end
   end

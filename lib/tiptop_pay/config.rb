@@ -7,7 +7,7 @@ module TiptopPay
 
     DEFAULT_LOGGER = -> {
       require "logger"
-      logger = Logger.new(STDERR)
+      logger = Logger.new($stderr)
       logger.progname = "tiptop_pay"
       logger.formatter = ->(severity, datetime, progname, msg) { "#{datetime} (#{progname}): #{msg}\n" }
       logger

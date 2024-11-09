@@ -4,7 +4,7 @@ require "spec_helper"
 
 describe TiptopPay::Client::Response do
   let(:status) { 200 }
-  let(:body) { '{"Model":{"Id":123,"CurrencyCode":"RUB","Amount":120},"Success":true}'.dup.force_encoding("CP1251").freeze }
+  let(:body) { '{"Model":{"Id":123,"CurrencyCode":"RUB","Amount":120},"Success":true}'.encode("CP1251").freeze }
   let(:headers) { {"content-type" => "application/json"} }
 
   subject { TiptopPay::Client::Response.new(status, body, headers) }
