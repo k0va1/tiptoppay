@@ -235,6 +235,8 @@ describe TiptopPay::Webhooks do
   describe "on_kassa_receipt" do
     let(:raw_data) do
       {"Id" => "sc_a38ca02005d40db7d32b36a0097b0",
+       "Number" => "1234",
+       "FiscalNumber" => "1234",
        "DocumentNumber" => "1234",
        "SessionNumber" => "12345",
        "FiscalSign" => "signsgin",
@@ -244,7 +246,6 @@ describe TiptopPay::Webhooks do
        "Type" => "Type",
        "Ofd" => "Ofd",
        "Url" => "http://example.com/url/",
-       "QrCodeUrl" => "http://example.com/url",
        "Amount" => "11.11",
        "DateTime" => "2015-11-18 20:29:05",
        "Receipt" => "{}",
@@ -265,7 +266,6 @@ describe TiptopPay::Webhooks do
     specify { expect(subject.type).to eq "Type" }
     specify { expect(subject.ofd).to eq "Ofd" }
     specify { expect(subject.url).to eq "http://example.com/url/" }
-    specify { expect(subject.qr_code_url).to eq "http://example.com/url" }
     specify { expect(subject.amount).to eq 11.11 }
     specify { expect(subject.date_time).to eq DateTime.parse("2015-11-18 20:29:05") }
     specify { expect(subject.receipt).to eq "{}" }
