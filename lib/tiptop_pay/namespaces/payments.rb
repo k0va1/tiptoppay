@@ -42,12 +42,12 @@ module TiptopPay
 
       def token_topup(attributes)
         response = request("token/topup", attributes)
-        instantiate(response[:model])
+        Transaction.new(response[:model])
       end
 
       def cards_topup(attributes)
         response = request("cards/topup", attributes)
-        instantiate(response[:model])
+        Transaction.new(response[:model])
       end
 
       def list(attributes)

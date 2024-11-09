@@ -11,8 +11,11 @@ module TiptopPay
 
       def start_session(attributes)
         validation_url = attributes.fetch(:validation_url) { raise ValidationUrlMissing.new("validation_url is required") }
+        payment_url = attributes.fetch(:payment_url)
 
-        request(:startsession, {"ValidationUrl" => validation_url})
+        request_attrs = {"ValidationUrl" => validation_url}
+        request_attrs["PaymentUrl"] = payment_url if payment_url
+        request(:startsession, request_attrs)
       end
     end
   end
