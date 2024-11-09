@@ -91,6 +91,8 @@ describe TiptopPay::Webhooks do
        "IpLatitude" => "59.939037",
        "IpLongitude" => "30.315784",
        "CardFirstSix" => "411111",
+       "OperationType" => "Payment",
+       "GatewayName" => "Test",
        "CardLastFour" => "1111",
        "CardType" => "Visa",
        "CardExpDate" => "01/19",
@@ -121,8 +123,8 @@ describe TiptopPay::Webhooks do
     specify { expect(subject.ip_city).to eq "Санкт-Петербург" }
     specify { expect(subject.ip_region).to eq "Санкт-Петербург" }
     specify { expect(subject.ip_district).to eq "Северо-Западный федеральный округ" }
-    specify { expect(subject.ip_lat).to eq "59.939037" }
-    specify { expect(subject.ip_lng).to eq "30.315784" }
+    specify { expect(subject.ip_latitude).to eq "59.939037" }
+    specify { expect(subject.ip_longitude).to eq "30.315784" }
     specify { expect(subject.card_first_six).to eq "411111" }
     specify { expect(subject.card_last_four).to eq "1111" }
     specify { expect(subject.card_type).to eq "Visa" }

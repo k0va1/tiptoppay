@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module TiptopPay
-  # @see https://developers.tiptoppay.kz/#fail TiptopPay API
+  # @see https://developers.tiptoppay.kz/#fail
   class OnFail < Model
     property :id, from: :transaction_id, required: true
     property :amount, transform_with: DecimalTransform, required: true
