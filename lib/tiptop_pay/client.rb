@@ -46,7 +46,7 @@ module TiptopPay
 
     def build_connection
       Faraday::Connection.new(config.host, config.connection_options) do |conn|
-        conn.request :basic_auth, config.public_key, config.secret_key
+        conn.request :authorization, :basic, config.public_key, config.secret_key
         config.connection_block.call(conn) if config.connection_block
       end
     end
