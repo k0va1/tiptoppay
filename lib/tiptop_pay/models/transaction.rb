@@ -49,6 +49,7 @@ module TiptopPay
     property :apple_pay
     property :android_pay
     property :escrow_accumulation_id
+    property :rrn
 
     def required_secure3d?
       false

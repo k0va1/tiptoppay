@@ -39,6 +39,26 @@ module TiptopPay
         response = request(:find, invoice_id: invoice_id)
         Transaction.new(response[:model])
       end
+
+      def token_topup(attributes)
+        response = request("token/topup", attributes)
+        instantiate(response[:model])
+      end
+
+      def cards_topup(attributes)
+        response = request("cards/topup", attributes)
+        instantiate(response[:model])
+      end
+
+      def list(attributes)
+        response = request(:list, attributes)
+        Array(response[:model]).map { |model| Transaction.new(model) }
+      end
+
+      def tokens_list(attributes)
+        response = request("tokens/list", attributes)
+        Array(response[:model]).map { |model| Token.new(model) }
+      end
     end
   end
 end
