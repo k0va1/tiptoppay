@@ -7,11 +7,11 @@ require "tiptop_pay/version"
 Gem::Specification.new do |spec|
   spec.name = "tiptop_pay"
   spec.version = TiptopPay::VERSION
-  spec.authors = ["undr", "kirillplatonov"]
-  spec.email = ["undr@yandex.ru", "mail@kirillplatonov.com"]
+  spec.authors = ["undr", "kirillplatonov", "k0va1"]
+  spec.email = ["undr@yandex.ru", "mail@kirillplatonov.com", "al3xander.koval@gmail.com"]
   spec.summary = "TiptopPay ruby client"
   spec.description = "TiptopPay ruby client"
-  spec.homepage = "https://github.com/platmart/tiptop_pay"
+  spec.homepage = "https://github.com/k0va1/tiptoppay"
   spec.license = "MIT"
 
   spec.files = `git ls-files -z`.split("\x0")

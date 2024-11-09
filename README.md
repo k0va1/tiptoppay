@@ -1,6 +1,6 @@
 # TiptopPay
 
-TiptopPay ruby client (https://developers.tiptoppay.kz/#printsip-raboty)
+[TiptopPay](https://developers.tiptoppay.kz/#api) ruby client
 
 ## Installation
 
@@ -216,7 +216,7 @@ end
 
 ## Contributing
 
-1. Fork it ( https://github.com/platmart/tiptop_pay/fork )
+1. Fork it ( https://github.com/k0va1/tiptoppay/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

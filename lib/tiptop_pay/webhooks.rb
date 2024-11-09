@@ -39,5 +39,9 @@ module TiptopPay
     def on_fail(data)
       OnFail.new(@serializer.load(data))
     end
+
+    def on_check(data)
+      OnCheck.new(@serializer.load(data))
+    end
   end
 end
