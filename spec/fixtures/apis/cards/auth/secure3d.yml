@@ -1,14 +1,21 @@
 ---
 :request:
   :url: '/payments/cards/auth'
-  :body: '{"Amount":10,"Currency":"RUB","InvoiceId":"1234567","Description":"Payment for goods on example.com","AccountId":"user_x","Name":"CARDHOLDER NAME","CardCryptogramPacket":"01492500008719030128SM"}'
+  :body: '{"Amount":10,"Currency":"KZT","InvoiceId":"1234567","IpAddress":"123.123.123.123","Description":"Оплата товаров в example.com","AccountId":"user_x","Name":"CARDHOLDER NAME","CardCryptogramPacket":"01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY+3QaZcNOW8lmXg0H670MclS4lI+qLkujKF4pR5Ri+T/E04Ufq3t5ntMUVLuZ998DLm+OVHV7FxIGR7snckpg47A73v7/y88Q5dxxvVZtDVi0qCcJAiZrgKLyLCqypnMfhjsgCEPF6d4OMzkgNQiynZvKysI2q+xc9cL0+CMmQTUPytnxX52k9qLNZ55cnE8kuLvqSK+TOG7Fz03moGcVvbb9XTg1oTDL4pl9rgkG3XvvTJOwol3JDxL1i6x+VpaRxpLJg0Zd9/9xRJOBMGmwAxo8/xyvGuAj85sxLJL6fA==","Payer":{"FirstName":"Тест","LastName":"Тестов","MiddleName":"Тестович","Birth":"1955-02-24","Address":"тестовый проезд дом тест","Street":"Lenina","City":"Almaty","Country":"KZ","Phone":"123","Postcode":"345"}}'
 :response:
   :body: >
     {
       "Model": {
-        "TransactionId": 12345,
-        "PaReq": "eJxVUdtugkAQ",
-        "AcsUrl": "https://test.paymentgate.ru/acs/auth/start.do"
+        "TransactionId": 891463508,
+        "PaReq": "+/eyJNZXJjaGFudE5hbWUiOm51bGwsIkZpcnN0U2l4IjoiNDI0MjQyIiwiTGFzdEZvdXIiOiI0MjQyIiwiQW1vdW50IjoxMDAuMCwiQ3VycmVuY3lDb2RlIjoiUlVCIiwiRGF0ZSI6IjIwMjEtMTAtMjVUMDA6MDA6MDArMDM6MDAiLCJDdXN0b21lck5hbWUiOm51bGwsIkN1bHR1cmVOYW1lIjoicnUtUlUifQ==",
+        "GoReq": null,
+        "AcsUrl": "https://demo.tiptoppay.kz/acs",
+        "ThreeDsSessionData": null,
+        "IFrameIsAllowed": true,
+        "FrameWidth": null,
+        "FrameHeight": null,
+        "ThreeDsCallbackId": "7be4d37f0a434c0a8a7fc0e328368d7d",
+        "EscrowAccumulationId": null
       },
       "Success": false,
       "Message": null
