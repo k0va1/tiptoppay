@@ -24,8 +24,8 @@ module TiptopPay
           webmock_stub&.to_return(return_options.merge(options))
         end
 
-        def to_raise(*)
-          webmock_stub&.to_raise(*)
+        def to_raise(...)
+          webmock_stub&.to_raise(...)
         end
 
         def to_timeout
