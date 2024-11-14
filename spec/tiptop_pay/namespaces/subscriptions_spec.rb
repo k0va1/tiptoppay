@@ -50,7 +50,7 @@ describe TiptopPay::Namespaces::Subscriptions do
         description: "Monthly subscription",
         email: "user@example.com",
         amount: 1.02,
-        currency: "RUB",
+        currency: "KZT",
         require_confirmation: false,
         start_date: "2014-08-09T11:49:41",
         interval: "Month",
@@ -67,10 +67,10 @@ describe TiptopPay::Namespaces::Subscriptions do
       context do
         let(:sub) { subject.create(attributes) }
 
-        specify { expect(sub.id).to eq("sc_8cf8a9338fb") }
+        specify { expect(sub.id).to eq("sc_221da6421dc44dbd2cc3464f6f083") }
         specify { expect(sub.account_id).to eq("user@example.com") }
         specify { expect(sub.description).to eq("Monthly subscription") }
-        specify { expect(sub.started_at).to eq(DateTime.parse("2014-08-09T11:49:41")) }
+        specify { expect(sub.started_at).to eq(DateTime.parse("2021-11-02T21:00:00+00:00")) }
         specify { expect(sub).to be_active }
       end
     end

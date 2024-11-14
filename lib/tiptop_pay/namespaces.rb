@@ -4,6 +4,7 @@ require "tiptop_pay/namespaces/base"
 require "tiptop_pay/namespaces/cards"
 require "tiptop_pay/namespaces/tokens"
 require "tiptop_pay/namespaces/payments"
+require "tiptop_pay/namespaces/v2/payments"
 require "tiptop_pay/namespaces/subscriptions"
 require "tiptop_pay/namespaces/orders"
 require "tiptop_pay/namespaces/kassa"
@@ -11,6 +12,10 @@ require "tiptop_pay/namespaces/apple_pay"
 
 module TiptopPay
   module Namespaces
+    def v2_payments
+      V2::Payments.new(self)
+    end
+
     def payments
       Payments.new(self)
     end

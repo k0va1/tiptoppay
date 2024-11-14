@@ -6,6 +6,7 @@ require "tiptop_pay/models/secure3d"
 require "tiptop_pay/models/transaction"
 require "tiptop_pay/models/subscription"
 require "tiptop_pay/models/order"
+require "tiptop_pay/models/apple_session"
 
 require "tiptop_pay/models/on_recurrent"
 require "tiptop_pay/models/on_pay"

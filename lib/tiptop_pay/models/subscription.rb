@@ -17,11 +17,14 @@ module TiptopPay
     property :interval_code, required: true
     property :period, transform_with: IntegralTransform, required: true
     property :max_periods
+    property :culture_name
     property :status, required: true
     property :status_code, required: true
     property :successful_transactions, from: :successful_transactions_number, required: true
     property :failed_transactions, from: :failed_transactions_number, required: true
     property :last_transaction_at, from: :last_transaction_date_iso, with: DateTimeTransform
     property :next_transaction_at, from: :next_transaction_date_iso, with: DateTimeTransform
+    property :receipt
+    property :failover_scheme_id
   end
 end

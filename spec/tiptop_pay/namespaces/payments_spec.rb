@@ -18,17 +18,17 @@ describe TiptopPay::Namespaces::Payments do
   describe "#confirm" do
     context do
       before { stub_api_request("payments/confirm/successful").perform }
-      specify { expect(subject.confirm(12345, 120)).to be_truthy }
+      specify { expect(subject.confirm(id: 12345, amount: 120)).to be_truthy }
     end
 
     context do
       before { stub_api_request("payments/confirm/failed").perform }
-      specify { expect(subject.confirm(12345, 120)).to be_falsy }
+      specify { expect(subject.confirm(id: 12345, amount: 120)).to be_falsy }
     end
 
     context do
       before { stub_api_request("payments/confirm/failed_with_message").perform }
-      specify { expect { subject.confirm(12345, 120) }.to raise_error(TiptopPay::Client::GatewayError, "Error message") }
+      specify { expect { subject.confirm(id: 12345, amount: 120) }.to raise_error(TiptopPay::Client::GatewayError, "Error message") }
     end
   end
 
@@ -52,17 +52,17 @@ describe TiptopPay::Namespaces::Payments do
   describe "#refund" do
     context do
       before { stub_api_request("payments/refund/successful").perform }
-      specify { expect(subject.refund(12345, 120)).to be_truthy }
+      specify { expect(subject.refund(id: 12345, amount: 120)).to be_truthy }
     end
 
     context do
       before { stub_api_request("payments/refund/failed").perform }
-      specify { expect(subject.refund(12345, 120)).to be_falsy }
+      specify { expect(subject.refund(id: 12345, amount: 120)).to be_falsy }
     end
 
     context do
       before { stub_api_request("payments/refund/failed_with_message").perform }
-      specify { expect { subject.refund(12345, 120) }.to raise_error(TiptopPay::Client::GatewayError, "Error message") }
+      specify { expect { subject.refund(id: 12345, amount: 120) }.to raise_error(TiptopPay::Client::GatewayError, "Error message") }
     end
   end
 
@@ -211,6 +211,14 @@ describe TiptopPay::Namespaces::Payments do
         specify { expect(subject.find(invoice_id).invoice_id).to eq(invoice_id) }
         specify { expect(subject.find(invoice_id).reason).to eq("Approved") }
       end
+    end
+  end
+
+  describe "#list" do
+    context "successful" do
+      before { stub_api_request("payments/list/successful").perform }
+      specify { expect(subject.list(date: "2014-08-09").length).to eq(1) }
+      specify { expect(subject.list(date: "2014-08-09").first).to be_instance_of(TiptopPay::Transaction) }
     end
   end
 end
