@@ -22,6 +22,7 @@ module TiptopPay
     property :created_at, from: :created_date_iso, with: DateTimeTransform
     property :authorized_at, from: :auth_date_iso, with: DateTimeTransform
     property :confirmed_at, from: :confirm_date_iso, with: DateTimeTransform
+    property :payout_at, from: :payout_date_iso, with: DateTimeTransform
     property :auth_code
     property :test_mode, required: true
     property :ip_address
@@ -50,6 +51,24 @@ module TiptopPay
     property :android_pay
     property :escrow_accumulation_id
     property :rrn
+    property :public_id
+    property :terminal_url
+    property :payment_amount
+    property :payment_currency
+    property :payment_currency_code
+    property :payout_amount
+    property :fall_back_scenario_declined_transaction_id
+    property :total_fee
+    property :gateway_name
+    property :culture_name
+    property :type
+    property :original_transaction_id
+    property :card_product
+    property :card_category
+    property :card_exp_date
+    property :apple_pay
+    property :android_pay
+    property :wallet_type
 
     def required_secure3d?
       false

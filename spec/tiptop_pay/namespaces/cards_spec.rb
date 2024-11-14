@@ -135,7 +135,7 @@ describe TiptopPay::Namespaces::Cards do
   end
 
   describe "#post3ds" do
-    let(:attributes) { {transaction_id: 12345, pa_res: "AQ=="} }
+    let(:attributes) { {id: 12345, pa_res: "AQ=="} }
 
     context "config.raise_banking_errors = false" do
       before { TiptopPay.config.raise_banking_errors = false }
