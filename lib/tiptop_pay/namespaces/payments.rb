@@ -26,7 +26,7 @@ module TiptopPay
         id = attributes.fetch(:id) { raise IdNotProvided.new("id attribute is required") }
         amount = attributes.fetch(:amount) { raise AmountNotProvided.new("amount attribute is required") }
 
-        request(:confirm, transaction_id: id, amount:)[:success]
+        request(:confirm, transaction_id: id, amount: amount)[:success]
       end
 
       def void(id)
@@ -39,7 +39,7 @@ module TiptopPay
         id = attributes.fetch(:id) { raise IdNotProvided.new("id attribute is required") }
         amount = attributes.fetch(:amount) { raise AmountNotProvided.new("amount attribute is required") }
 
-        request(:refund, transaction_id: id, amount:)[:success]
+        request(:refund, transaction_id: id, amount: amount)[:success]
       end
 
       def post3ds(id, pa_res)

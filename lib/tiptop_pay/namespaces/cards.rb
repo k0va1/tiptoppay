@@ -31,7 +31,7 @@ module TiptopPay
         id = attributes.fetch(:id) { raise TransactionIdNotProvided.new("id attribute is required") }
         pa_res = attributes.fetch(:pa_res) { raise PaResNotProvided.new("pa_res attribute is required") }
 
-        response = request(:post3ds, transaction_id: id, pa_res:)
+        response = request(:post3ds, transaction_id: id, pa_res: pa_res)
         instantiate(response[:model])
       end
 
