@@ -1,24 +1,20 @@
 # frozen_string_literal: true
 
 module TiptopPay
-  # @see https://developers.tiptoppay.kz/#pay
-  class OnPay < Model
+  # @see https://developers.tiptoppay.kz/#confirm
+  class OnConfirm < Model
     property :id, from: :transaction_id, required: true
     property :amount, transform_with: DecimalTransform, required: true
     property :currency, required: true
     property :payment_amount, required: true
     property :payment_currency, required: true
-    property :date_time, transform_with: DateTimeTransform
-    property :card_id
+    property :date_time, transform_with: DateTimeTransform, required: true
     property :card_first_six, required: true
     property :card_last_four, required: true
     property :card_type, required: true
-    property :card_type_code
     property :card_exp_date, required: true
     property :test_mode, required: true, transform_with: BooleanTransform
     property :status, required: true
-    property :operation_type, required: true
-    property :gateway_name, required: true
     property :invoice_id
     property :account_id
     property :subscription_id
@@ -37,11 +33,7 @@ module TiptopPay
     property :auth_code
     property :metadata, from: :data, default: {}
     property :token
-    property :total_fee, transform_with: DecimalTransform
-    property :card_product
     property :payment_method
-    property :fall_back_scenario_declined_transaction_id
-    property :rrn
-    property :custom_fields
+    property :rrm
   end
 end

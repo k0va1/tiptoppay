@@ -256,7 +256,7 @@ describe TiptopPay::Webhooks do
        "AccountId" => "3213213"}
     end
 
-    subject { TiptopPay.webhooks.kassa_receipt(raw_data) }
+    subject { TiptopPay.webhooks.on_kassa_receipt(raw_data) }
 
     specify { expect(subject.id).to eq "sc_a38ca02005d40db7d32b36a0097b0" }
     specify { expect(subject.document_number).to eq "1234" }

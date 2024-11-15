@@ -24,7 +24,7 @@ module TiptopPay
     property :confirmed_at, from: :confirm_date_iso, with: DateTimeTransform
     property :payout_at, from: :payout_date_iso, with: DateTimeTransform
     property :auth_code
-    property :test_mode, required: true
+    property :test_mode, required: true, transform_with: BooleanTransform
     property :ip_address
     property :ip_country
     property :ip_city

@@ -14,7 +14,7 @@ module TiptopPay
     property :card_last_four, required: true
     property :card_type, required: true
     property :card_exp_date, required: true
-    property :test_mode, required: true
+    property :test_mode, required: true, transform_with: BooleanTransform
     property :status, required: true
     property :operation_type, required: true
     property :invoice_id

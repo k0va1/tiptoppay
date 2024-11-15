@@ -16,6 +16,7 @@ module TiptopPay
     property :ofd, required: true
     property :url, required: true
     property :transaction_id
+    property :qr_code_url
     property :amount, transform_with: DecimalTransform, required: true
     property :date_time, transform_with: DateTimeTransform
     property :invoice_id
