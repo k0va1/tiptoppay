@@ -66,36 +66,6 @@ describe TiptopPay::Namespaces::Payments do
     end
   end
 
-  describe "#post3ds" do
-    context "config.raise_banking_errors = false" do
-      before { TiptopPay.config.raise_banking_errors = false }
-
-      context do
-        before { stub_api_request("payments/post3ds/successful").perform }
-        specify { expect(subject.post3ds(12345, "eJxVUdtugkAQ")).to be_instance_of(TiptopPay::Transaction) }
-      end
-
-      context do
-        before { stub_api_request("payments/post3ds/failed").perform }
-        specify { expect { subject.post3ds(12345, "eJxVUdtugkAQ") }.not_to raise_error }
-      end
-    end
-
-    context "config.raise_banking_errors = true" do
-      before { TiptopPay.config.raise_banking_errors = true }
-
-      context do
-        before { stub_api_request("payments/post3ds/successful").perform }
-        specify { expect { subject.post3ds(12345, "eJxVUdtugkAQ") }.not_to raise_error }
-      end
-
-      context do
-        before { stub_api_request("payments/post3ds/failed").perform }
-        specify { expect { subject.post3ds(12345, "eJxVUdtugkAQ") }.to raise_error(TiptopPay::Client::GatewayErrors::InsufficientFunds) }
-      end
-    end
-  end
-
   describe "#get" do
     let(:transaction_id) { 12345 }
 

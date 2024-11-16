@@ -8,6 +8,7 @@ module TiptopPay
       CardCryptogramPacketNotProvided = Class.new(StandardError)
       TransactionIdNotProvided = Class.new(StandardError)
       PaResNotProvided = Class.new(StandardError)
+      CurrencyNotProvided = Class.new(StandardError)
 
       def charge(attributes)
         attributes.fetch(:amount) { raise AmountNotProvided.new("amount attribute is required") }
@@ -33,6 +34,15 @@ module TiptopPay
 
         response = request(:post3ds, transaction_id: id, pa_res: pa_res)
         instantiate(response[:model])
+      end
+
+      def topup(attributes)
+        attributes.fetch(:card_cryptogram_packet) { raise CardCryptogramPacketNotProvided.new("card_cryptogram_packet attribute is required") }
+        attributes.fetch(:amount) { raise AmountNotProvided.new("amount attribute is required") }
+        attributes.fetch(:currency) { raise CurrencyNotProvided.new("currency attribute is required") }
+
+        response = request(:topup, attributes)
+        Transaction.new(response[:model])
       end
 
       private
