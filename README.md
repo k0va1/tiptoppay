@@ -65,7 +65,7 @@ webhooks.on_pay(...)
 
 1. [Test method](#test-method)
 
-#### [Payments](#payments)
+#### Payments
 
 1. [Cryptogram-based payments](#cryptogram-based-payments)
 2. [3-D Secure authentication](#3-d-secure-authentication)
@@ -80,7 +80,7 @@ webhooks.on_pay(...)
 11. [Get transactions history](#get-transactions-history)
 12. [Get tokens list](#get-tokens-list)
 
-#### [Subscriptions](#subscriptions)
+#### Subscriptions
 
 1. [Create subscription](#create-subscription)
 2. [Get subscription data](#get-subscription-data)
@@ -88,22 +88,22 @@ webhooks.on_pay(...)
 4. [Update subscription](#update-subscription)
 5. [Cancel subscription](#cancel-subscription)
 
-#### [Orders](#orders)
+#### Orders
 
 1. [Create order](#create-order)
 2. [Cancel order](#cancel-order)
 
-#### [Apple Pay](#apple-pay)
+#### Apple Pay
 
-1. [Start Apple Pay session](#apple-pay-start-session)
+1. [Start Apple Pay session](#start-apple-pay-session)
 
-#### [Kassa](#kassa)
+#### Kassa
 
 1. [Create receipt](#create-receipt)
 2. [Get receipt status](#get-receipt-status)
 3. [Get receipt data](#get-receipt-data)
 
-#### [Webhooks](#webhooks)
+#### Webhooks
 
 1. [On check](#on-check)
 2. [On pay](#on-pay)
@@ -124,7 +124,7 @@ TiptopPay.client.ping
 # => true
 ```
 
-#### [Payments](#payments)
+#### Payments
 
 #### [Cryptogram-based payments](#cryptogram-based-payments)
 
@@ -291,7 +291,7 @@ TiptopPay.client.v2_payments.list(
 TiptopPay.client.tokens.list(page_number: 1)
 ```
 
-#### [Subscriptions](#subscriptions)
+#### Subscriptions
 
 #### [Create subscription](#create-subscription)
 
@@ -349,7 +349,7 @@ TiptopPay.client.subscriptions.update(
 TiptopPay.client.subscriptions.cancel("sc_8cf8a9338fb8ebf7202b08d09c938")
 ```
 
-#### [Orders](#orders)
+#### Orders
 
 #### [Create order](#create-order)
 
@@ -372,7 +372,7 @@ TiptopPay.client.orders.create(
 TiptopPay.client.orders.cancel("f2K8LV6reGE9WBFn")
 ```
 
-#### [Apple Pay](#apple-pay)
+#### Apple Pay
 
 [Start Apple Pay session](https://developers.tiptoppay.kz/#zapusk-sessii-dlya-oplaty-cherez-apple-pay)
 
@@ -382,7 +382,7 @@ TiptopPay.client.apple_pay.start_session(
 )
 ```
 
-#### [Kassa](#kassa)
+#### Kassa
 
 #### [Create receipt](#create-receipt)
 
@@ -422,7 +422,7 @@ TiptopPay.client.kassa.receipt_status("4c335bb5ee56455f916db6e95c0d196e")
 TiptopPay.client.kassa.fetch_receipt("4c335bb5ee56455f916db6e95c0d196e")
 ```
 
-#### [Webhooks](#webhooks)
+#### Webhooks
 
 #### [On check](#on-check)
 
